@@ -1,0 +1,123 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { parseWikilinks, getWikiSlug } from '@/lib/wiki-utils';
+
+export async function getStaticPaths() {
+  const entries = (await getCollection('wiki')).filter((entry) => entry.id.includes('/'));
+  return entries.map((entry) => ({
+    params: { slug: getWikiSlug(entry.id) },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const slug = getWikiSlug(entry.id);
+const title =
+  entry.data.aliases?.[0] ||
+  slug.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
+
+const sourcesRefs = parseWikilinks(entry.data.sources);
+const relatedRefs = parseWikilinks(entry.data.related);
+---
+
+<BaseLayout title={title} description={`Wiki: ${title}`}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="lg:flex lg:gap-12">
+      <!-- Main Content -->
+      <article class="flex-1 min-w-0">
+        <header class="mb-10">
+          <a
+            href="/wiki"
+            class="inline-flex items-center text-sm text-text-muted hover:text-accent transition-colors mb-6"
+          >
+            ← Back to Wiki
+          </a>
+          <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-4">
+            {title}
+          </h1>
+          <div class="flex flex-wrap items-center gap-2 text-sm text-text-muted">
+            <span class="px-2 py-0.5 bg-accent/10 text-accent text-xs rounded">
+              {entry.data.type}
+            </span>
+            <span>·</span>
+            <time datetime={(entry.data.created || entry.data.ingested || new Date('2026-01-01')).toISOString().split('T')[0]}>
+              {(entry.data.created || entry.data.ingested || new Date('2026-01-01')).toLocaleDateString('zh-CN')}
+            </time>
+            {entry.data.updated && (
+              <>
+                <span>·</span>
+                <span>更新于 {entry.data.updated.toLocaleDateString('zh-CN')}</span>
+              </>
+            )}
+          </div>
+        </header>
+
+        <div class="prose max-w-none">
+          <Content />
+        </div>
+      </article>
+
+      <!-- Sidebar -->
+      <aside class="hidden lg:block w-64 flex-shrink-0 space-y-6">
+        {entry.data.tags.length > 0 && (
+          <div>
+            <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Tags</h3>
+            <div class="flex flex-wrap gap-1.5">
+              {entry.data.tags.map((tag: string) => (
+                <span class="px-2 py-0.5 bg-badge-bg text-badge-text text-xs rounded">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {entry.data.aliases.length > 0 && (
+          <div>
+            <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Aliases</h3>
+            <div class="flex flex-wrap gap-1.5">
+              {entry.data.aliases.map((alias: string) => (
+                <span class="px-2 py-0.5 bg-badge-bg text-badge-text text-xs rounded italic">
+                  {alias}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {relatedRefs.length > 0 && (
+          <div>
+            <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Related</h3>
+            <ul class="space-y-1">
+              {relatedRefs.map((ref) => (
+                <li>
+                  <a href={`/wiki/${ref.slug}`} class="text-sm text-accent hover:text-accent-hover transition-colors">
+                    {ref.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {sourcesRefs.length > 0 && (
+          <div>
+            <h3 class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">Sources</h3>
+            <ul class="space-y-1">
+              {sourcesRefs.map((ref) => (
+                <li>
+                  <a href={`/wiki/${ref.slug}`} class="text-sm text-accent hover:text-accent-hover transition-colors">
+                    {ref.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

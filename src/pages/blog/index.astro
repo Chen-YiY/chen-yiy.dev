@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogList from '@/components/blog/BlogList';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .map((post) => ({
+    slug: post.id,
+    title: post.data.title,
+    date: post.data.date.toISOString(),
+    summary: post.data.summary,
+    tags: post.data.tags,
+    readingTime: `${Math.max(1, Math.ceil(post.body!.length / 500))} min read`,
+  }));
+---
+
+<BaseLayout title="Blog" description="Technical articles and thoughts">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <section class="text-center max-w-2xl mx-auto mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-3">
+        Blog
+      </h1>
+      <p class="text-text-secondary">
+        Thoughts, tutorials, and technical deep-dives
+      </p>
+    </section>
+
+    <BlogList client:load posts={posts} />
+  </div>
+</BaseLayout>

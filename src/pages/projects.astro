@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProjectGrid from '@/components/projects/ProjectGrid';
+import { getProjects } from '@/lib/github';
+
+const projects = getProjects();
+---
+
+<BaseLayout title="Projects" description="Open source projects and apps">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <section class="text-center max-w-2xl mx-auto mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-3">
+        Projects
+      </h1>
+      <p class="text-text-secondary">
+        Every project tells a story
+      </p>
+    </section>
+
+    <ProjectGrid client:load projects={projects} />
+  </div>
+</BaseLayout>

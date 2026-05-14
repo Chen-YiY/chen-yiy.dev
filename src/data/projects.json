@@ -1,0 +1,70 @@
+{
+  "projects": [
+    {
+      "name": "CodePilot",
+      "featured": true,
+      "customDescription": "Claude Code 桌面会话管理器，集成终端、会话管理与代码片段",
+      "platform": "Desktop",
+      "customTags": ["Tauri", "React", "DevTool", "Claude Code"]
+    },
+    {
+      "name": "claw-code",
+      "featured": true,
+      "customDescription": "Claude Code 增强工具集，更高效地驾驭 AI 编程助手",
+      "platform": "CLI",
+      "customTags": ["AI", "CLI", "DevTool"]
+    },
+    {
+      "name": "ai-news-radar",
+      "featured": false,
+      "platform": "Python",
+      "customTags": ["AI", "Automation"]
+    },
+    {
+      "name": "NavSphere",
+      "featured": true,
+      "customDescription": "基于 GitHub 存储的网址导航程序，支持一键部署至 Vercel",
+      "platform": "Web",
+      "customTags": ["导航", "Web"]
+    },
+    {
+      "name": "awesome-n8n-workflows",
+      "featured": false,
+      "customTags": ["自动化", "n8n"]
+    },
+    {
+      "name": "ticket-purchase",
+      "featured": false,
+      "customDescription": "大麦自动抢票工具",
+      "platform": "Python",
+      "customTags": ["自动化"]
+    },
+    {
+      "name": "n8n",
+      "featured": false,
+      "customDescription": "Fair-code 工作流自动化平台，原生 AI 能力",
+      "platform": "Node.js",
+      "customTags": ["自动化", "Workflow"]
+    },
+    {
+      "name": "awesome-LLM-resources",
+      "featured": true,
+      "customDescription": "LLM 资源精选合集：语音视频生成、Agent、辅助编程、MCP 等",
+      "customTags": ["AI", "LLM", "资源"]
+    },
+    {
+      "name": "claude-code-router",
+      "featured": false,
+      "customDescription": "基于 Claude Code 的编码基础设施路由工具",
+      "platform": "CLI",
+      "customTags": ["AI", "CLI"]
+    },
+    {
+      "name": "claudia",
+      "featured": true,
+      "customDescription": "Claude Code 的强大 GUI 应用和工具包",
+      "platform": "Desktop",
+      "customTags": ["AI", "Desktop", "DevTool"]
+    }
+  ]
+}

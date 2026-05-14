@@ -1,0 +1,51 @@
+---
+title: "用 Astro + React 搭建个人作品集网站"
+date: 2026-04-08
+summary: "从零开始使用 Astro 和 React 构建一个高性能的个人作品集网站，集成 GitHub API 自动同步项目数据。"
+tags: ["Astro", "React", "前端"]
+draft: false
+---
+
+# 用 Astro + React 搭建个人作品集网站
+
+在众多的静态站点生成器中，Astro 以其独特的「岛屿架构」脱颖而出。本文将分享如何使用 Astro + React 构建一个高性能的个人作品集网站。
+
+## 为什么选择 Astro？
+
+Astro 的核心优势：
+
+- **零 JS 默认**：页面默认不发送 JavaScript到客户端
+- **岛屿架构**：只在需要交互的组件上注水（hydrate）
+- **框架无关**：可以混用 React、Vue、Svelte 等
+
+## 项目架构
+
+```
+src/
+├── components/    # React 交互组件
+├── content/blog/  # MDX 文章
+├── layouts/       # 页面布局
+├── lib/           # 工具函数
+└── pages/         # 页面路由
+```
+
+## GitHub API 集成
+
+通过 GitHub REST API 自动拉取仓库数据：
+
+```typescript
+export async function getProjects(): Promise<ProjectData[]> {
+  const repos = await fetchRepos();
+  return repos.map((repo) => ({
+    name: repo.name,
+    stars: repo.stargazers_count,
+    // ...
+  }));
+}
+```
+
+构建时拉取数据，运行时零 API 调用，完美结合性能与实时性。
+
+## 总结
+
+Astro 的岛屿架构非常适合内容驱动的网站，既能保持优秀的加载性能，又能在需要交互的地方使用 React 组件。

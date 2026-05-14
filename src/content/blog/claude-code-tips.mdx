@@ -1,0 +1,58 @@
+---
+title: "Claude Code 高效使用技巧"
+date: 2026-04-07
+summary: "分享 Claude Code 日常开发中的实用技巧，包括自定义 Skills、Hooks 配置和 Agent 协同工作流。"
+tags: ["AI", "DevTool", "效率"]
+draft: false
+---
+
+# Claude Code 高效使用技巧
+
+Claude Code 是 Anthropic 推出的 AI 编程助手 CLI 工具。本文分享一些实用的使用技巧。
+
+## 1. 自定义 Skills
+
+Skills 是 Claude Code 的核心扩展机制：
+
+```bash
+# 技能目录结构
+skills/
+├── domains/
+│   ├── security/
+│   └── development/
+└── orchestration/
+```
+
+通过 Skills 可以：
+- 定义领域特定的知识库
+- 配置自动触发的工作流
+- 实现多 Agent 协同
+
+## 2. Hooks 配置
+
+Hooks 允许在特定事件触发时执行自定义命令：
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "command": "npm run lint"
+      }
+    ]
+  }
+}
+```
+
+## 3. 多 Agent 协同
+
+对于复杂任务，可以使用 TeamCreate 模式：
+
+- 每个 Agent 负责独立的文件/模块
+- 通过消息传递协调工作
+- 避免上下文窗口溢出
+
+## 总结
+
+掌握这些技巧后，Claude Code 的效率可以提升数倍。关键在于找到适合自己工作流的配置方式。

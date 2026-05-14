@@ -1,0 +1,156 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { siteConfig } from '@/config';
+---
+
+<BaseLayout title="About" description="About Chen-YiY">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <!-- Profile -->
+    <section class="flex items-center gap-6 mb-14">
+      <div class="w-24 h-24 bg-gradient-to-br from-accent/20 to-accent/5 rounded-full flex-shrink-0 flex items-center justify-center border-2 border-border">
+        <span class="text-2xl font-bold text-accent">CY</span>
+      </div>
+      <div>
+        <h1 class="text-3xl font-bold text-text-primary mb-1">
+          {siteConfig.author}
+        </h1>
+        <p class="text-text-secondary">
+          Full-Stack Developer · Security Engineer · Open Source Enthusiast
+        </p>
+      </div>
+    </section>
+
+    <!-- About Me -->
+    <section class="mb-14">
+      <h2 class="text-xl font-bold text-text-primary mb-4">About Me</h2>
+      <div class="text-text-secondary leading-relaxed space-y-3">
+        <p>
+          Hi, I'm Chen-YiY. I'm passionate about building tools and exploring the intersection of security, AI, and web development.
+        </p>
+        <p>
+          I believe in learning by doing — every project is an opportunity to push boundaries and solve real problems. Currently focused on AI-powered development tools and security automation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-14">
+      <h2 class="text-xl font-bold text-text-primary mb-6">Skills & Tools</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-sm font-semibold text-text-muted uppercase tracking-wider mb-3">Security</h3>
+          <div class="flex flex-wrap gap-2">
+            {['Red Team', 'Blue Team', 'Penetration Testing', 'CTF', 'Threat Intel', 'SIEM/EDR'].map((skill) => (
+              <span class="px-3 py-1.5 bg-badge-bg text-badge-text text-sm rounded-lg hover:bg-border transition-colors">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-text-muted uppercase tracking-wider mb-3">Development</h3>
+          <div class="flex flex-wrap gap-2">
+            {['TypeScript', 'React', 'Astro', 'Python', 'Go', 'Tauri', 'Node.js', 'Tailwind CSS'].map((skill) => (
+              <span class="px-3 py-1.5 bg-badge-bg text-badge-text text-sm rounded-lg hover:bg-border transition-colors">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-semibold text-text-muted uppercase tracking-wider mb-3">AI & DevOps</h3>
+          <div class="flex flex-wrap gap-2">
+            {['Claude Code', 'LLM', 'RAG', 'MCP', 'Docker', 'CI/CD', 'GitHub Actions', 'n8n'].map((skill) => (
+              <span class="px-3 py-1.5 bg-badge-bg text-badge-text text-sm rounded-lg hover:bg-border transition-colors">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What I Do -->
+    <section class="mb-14">
+      <h2 class="text-xl font-bold text-text-primary mb-6">What I Do</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-bg-secondary rounded-lg border border-border p-5">
+          <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-text-primary mb-1">Open Source</h3>
+          <p class="text-sm text-text-secondary">
+            Building and contributing to developer tools and security utilities.
+          </p>
+        </div>
+
+        <div class="bg-bg-secondary rounded-lg border border-border p-5">
+          <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-text-primary mb-1">Security</h3>
+          <p class="text-sm text-text-secondary">
+            Security research, CTF challenges, and building defensive tools.
+          </p>
+        </div>
+
+        <div class="bg-bg-secondary rounded-lg border border-border p-5">
+          <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-text-primary mb-1">AI Engineering</h3>
+          <p class="text-sm text-text-secondary">
+            Exploring LLM applications, RAG pipelines, and AI-assisted development.
+          </p>
+        </div>
+
+        <div class="bg-bg-secondary rounded-lg border border-border p-5">
+          <div class="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-text-primary mb-1">Technical Writing</h3>
+          <p class="text-sm text-text-secondary">
+            Sharing knowledge through tutorials, guides, and deep-dive articles.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <h2 class="text-xl font-bold text-text-primary mb-4">Get in Touch</h2>
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href={siteConfig.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-bg-secondary border border-border rounded-lg text-sm text-text-secondary hover:bg-bg-hover hover:text-text-primary transition-colors"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-bg-secondary border border-border rounded-lg text-sm text-text-secondary hover:bg-bg-hover hover:text-text-primary transition-colors"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+          </svg>
+          Blog
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
