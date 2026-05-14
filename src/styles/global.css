@@ -26,6 +26,22 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --color-bg-primary: #1a1a1a;
+  --color-bg-secondary: #242424;
+  --color-bg-hover: #2a2a2a;
+  --color-border: #383838;
+  --color-text-primary: #e8e6e3;
+  --color-text-secondary: #a0a0a0;
+  --color-text-muted: #6b6b6b;
+  --color-accent: #60a5fa;
+  --color-accent-hover: #93bbfd;
+  --color-badge-bg: #2a2a2a;
+  --color-badge-text: #a0a0a0;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+}
+
 body {
   min-height: 100vh;
 }

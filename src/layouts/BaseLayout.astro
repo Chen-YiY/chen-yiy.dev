@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '@/config';
+import ThemeToggle from '@/components/ThemeToggle';
 import '@/styles/global.css';
 
 interface Props {
@@ -46,6 +47,13 @@ const ogImg = ogImage || '/favicon.svg';
       rel="stylesheet"
     />
 
+    <script is:inline>
+      (function() {
+        var t = localStorage.getItem('theme') || 'system';
+        var r = t === 'system' ? (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light') : t;
+        document.documentElement.setAttribute('data-theme', r);
+      })();
+    </script>
     <title>{pageTitle}</title>
   </head>
   <body class="flex flex-col min-h-screen">
@@ -73,6 +81,8 @@ const ogImg = ogImage || '/favicon.svg';
               </a>
             ))}
           </nav>
+
+          <ThemeToggle client:load />
 
           <!-- Mobile Menu Button -->
           <button
