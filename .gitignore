@@ -19,8 +19,7 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Cache
-src/data/github-cache.json
+# Cache (keep github-cache.json - needed for build)
 
 # Wiki symlink (external)
 src/content/wiki
