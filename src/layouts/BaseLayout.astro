@@ -13,7 +13,8 @@ const { title, description, ogImage } = Astro.props;
 const pageTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title;
 const pageDescription = description || siteConfig.description;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImg = ogImage || '/favicon.svg';
+const base = import.meta.env.BASE_URL;
+const ogImg = ogImage || `${base}favicon.svg`;
 ---
 
 <!doctype html>
@@ -23,8 +24,8 @@ const ogImg = ogImage || '/favicon.svg';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href="/rss.xml" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href={`${base}rss.xml`} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -60,26 +61,29 @@ const ogImg = ogImage || '/favicon.svg';
     <header class="border-b border-border">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <a href="/" class="font-semibold text-lg text-text-primary">
+          <a href={base} class="font-semibold text-lg text-text-primary">
             {siteConfig.title}
           </a>
 
           <!-- Desktop Nav -->
           <nav class="hidden sm:flex items-center gap-6">
-            {siteConfig.nav.map((item) => (
-              <a
-                href={item.href}
-                class:list={[
-                  'text-sm transition-colors',
-                  Astro.url.pathname === item.href ||
-                  (item.href !== '/' && Astro.url.pathname.startsWith(item.href))
-                    ? 'text-text-primary font-medium'
-                    : 'text-text-secondary hover:text-text-primary',
-                ]}
-              >
-                {item.label}
-              </a>
-            ))}
+            {siteConfig.nav.map((item) => {
+              const href = base + item.href;
+              return (
+                <a
+                  href={href}
+                  class:list={[
+                    'text-sm transition-colors',
+                    Astro.url.pathname === href ||
+                    (item.href !== '/' && Astro.url.pathname.startsWith(href))
+                      ? 'text-text-primary font-medium'
+                      : 'text-text-secondary hover:text-text-primary',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
 
           <ThemeToggle client:load />
@@ -100,20 +104,23 @@ const ogImg = ogImage || '/favicon.svg';
         <!-- Mobile Nav -->
         <nav id="mobile-menu" class="hidden sm:hidden pb-4">
           <div class="flex flex-col gap-2">
-            {siteConfig.nav.map((item) => (
-              <a
-                href={item.href}
-                class:list={[
-                  'px-3 py-2 rounded-lg text-sm transition-colors',
-                  Astro.url.pathname === item.href ||
-                  (item.href !== '/' && Astro.url.pathname.startsWith(item.href))
-                    ? 'bg-bg-hover text-text-primary font-medium'
-                    : 'text-text-secondary hover:bg-bg-hover',
-                ]}
-              >
-                {item.label}
-              </a>
-            ))}
+            {siteConfig.nav.map((item) => {
+              const href = base + item.href;
+              return (
+                <a
+                  href={href}
+                  class:list={[
+                    'px-3 py-2 rounded-lg text-sm transition-colors',
+                    Astro.url.pathname === href ||
+                    (item.href !== '/' && Astro.url.pathname.startsWith(href))
+                      ? 'bg-bg-hover text-text-primary font-medium'
+                      : 'text-text-secondary hover:bg-bg-hover',
+                  ]}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
           </div>
         </nav>
       </div>
@@ -129,7 +136,7 @@ const ogImg = ogImage || '/favicon.svg';
           <p>&copy; {new Date().getFullYear()} {siteConfig.author}</p>
           <div class="flex items-center gap-4">
             <a
-              href="/rss.xml"
+              href={`${base}rss.xml`}
               class="hover:text-text-primary transition-colors"
             >
               RSS

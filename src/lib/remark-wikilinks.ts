@@ -1,5 +1,6 @@
 import { visit } from 'unist-util-visit';
 import type { Root, Text, Html } from 'mdast';
+import { BASE } from './base';
 
 // Match [[slug]] or [[slug|display]], exclude ![[image]] embeds
 const WIKILINK_RE = /(?<!!)\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g;
@@ -32,7 +33,7 @@ export default function remarkWikilinks() {
         // wikilink → <a> tag
         children.push({
           type: 'html',
-          value: `<a href="/wiki/${slug}" class="wiki-link">${display}</a>`,
+          value: `<a href="${BASE}/wiki/${slug}" class="wiki-link">${display}</a>`,
         } as Html);
 
         lastIndex = matchEnd;

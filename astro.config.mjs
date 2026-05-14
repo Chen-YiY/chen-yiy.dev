@@ -6,7 +6,9 @@ import tailwindcss from '@tailwindcss/vite';
 import remarkWikilinks from './src/lib/remark-wikilinks.ts';
 
 export default defineConfig({
-  site: 'https://chen-yiy.dev',
+  site: 'https://chen-yiy.github.io',
+  base: '/chen-yiy.dev',
+  trailingSlash: 'always',
   integrations: [
     react(),
     mdx(),

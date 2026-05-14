@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { BASE } from '@/lib/base';
 
 export interface BlogPost {
   slug: string;
@@ -74,7 +75,7 @@ export default function BlogList({ posts }: BlogListProps) {
         {filtered.map((post) => (
           <a
             key={post.slug}
-            href={`/blog/${post.slug}`}
+            href={`${BASE}/blog/${post.slug}`}
             className="block bg-bg-secondary rounded-lg border border-border p-5 hover:shadow-md transition-shadow"
           >
             <h3 className="font-semibold text-text-primary mb-2 group-hover:text-accent">

@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { BASE } from '@/lib/base';
 
 export interface WikiEntry {
   slug: string;
@@ -79,7 +80,7 @@ export default function WikiIndex({ entries }: WikiIndexProps) {
         {filtered.map((entry) => (
           <a
             key={entry.slug}
-            href={`/wiki/${entry.slug}`}
+            href={`${BASE}/wiki/${entry.slug}`}
             className="group block bg-bg-secondary rounded-lg border border-border p-5 hover:shadow-md transition-all hover:-translate-y-0.5"
           >
             <div className="flex items-start justify-between mb-2">

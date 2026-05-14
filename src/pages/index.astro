@@ -11,6 +11,8 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
 const featuredProjects = getProjects()
   .filter((p) => p.featured)
   .slice(0, 3);
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout>
@@ -25,13 +27,13 @@ const featuredProjects = getProjects()
       </p>
       <div class="flex items-center justify-center gap-4">
         <a
-          href="/projects"
+          href={`${base}projects`}
           class="inline-flex items-center px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors font-medium"
         >
           View Projects
         </a>
         <a
-          href="/blog"
+          href={`${base}blog`}
           class="inline-flex items-center px-6 py-3 border border-border rounded-lg hover:bg-bg-hover transition-colors font-medium text-text-secondary"
         >
           Read Blog
@@ -45,7 +47,7 @@ const featuredProjects = getProjects()
         <div class="flex items-center justify-between mb-8">
           <h2 class="text-2xl font-bold text-text-primary">Featured Projects</h2>
           <a
-            href="/projects"
+            href={`${base}projects`}
             class="text-sm text-accent hover:text-accent-hover transition-colors"
           >
             View All →
@@ -87,7 +89,7 @@ const featuredProjects = getProjects()
         <div class="flex items-center justify-between mb-8">
           <h2 class="text-2xl font-bold text-text-primary">Latest Posts</h2>
           <a
-            href="/blog"
+            href={`${base}blog`}
             class="text-sm text-accent hover:text-accent-hover transition-colors"
           >
             View All →
@@ -96,7 +98,7 @@ const featuredProjects = getProjects()
         <div class="space-y-4">
           {recentPosts.map((post) => (
             <a
-              href={`/blog/${post.id}`}
+              href={`${base}blog/${post.id}`}
               class="block bg-bg-secondary rounded-lg border border-border p-5 hover:shadow-md transition-shadow"
             >
               <h3 class="font-semibold text-text-primary mb-2">
