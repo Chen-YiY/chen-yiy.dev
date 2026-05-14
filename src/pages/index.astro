@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { siteConfig } from '@/config';
+import Hero from '@/components/Hero.astro';
 import { getCollection } from 'astro:content';
 import { getProjects } from '@/lib/github';
 
@@ -16,31 +16,9 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout>
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-    <!-- Hero Section -->
-    <section class="text-center max-w-2xl mx-auto mb-20">
-      <h1 class="text-4xl sm:text-5xl font-bold text-text-primary mb-4">
-        {siteConfig.title}
-      </h1>
-      <p class="text-lg text-text-secondary mb-8">
-        {siteConfig.description}
-      </p>
-      <div class="flex items-center justify-center gap-4">
-        <a
-          href={`${base}projects`}
-          class="inline-flex items-center px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors font-medium"
-        >
-          View Projects
-        </a>
-        <a
-          href={`${base}blog`}
-          class="inline-flex items-center px-6 py-3 border border-border rounded-lg hover:bg-bg-hover transition-colors font-medium text-text-secondary"
-        >
-          Read Blog
-        </a>
-      </div>
-    </section>
+  <Hero />
 
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
     <!-- Featured Projects -->
     {featuredProjects.length > 0 && (
       <section class="mb-20">

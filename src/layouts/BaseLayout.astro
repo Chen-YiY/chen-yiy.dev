@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '@/config';
+import Logo from '@/components/Logo';
 import ThemeToggle from '@/components/ThemeToggle';
 import '@/styles/global.css';
 
@@ -61,8 +62,9 @@ const ogImg = ogImage || `${base}favicon.svg`;
     <header class="border-b border-border">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <a href={base} class="font-semibold text-lg text-text-primary">
-            {siteConfig.title}
+          <a href={base} class="flex items-center gap-2.5 text-text-primary">
+            <Logo size={28} />
+            <span class="font-semibold text-sm tracking-tight">{siteConfig.title}</span>
           </a>
 
           <!-- Desktop Nav -->

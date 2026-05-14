@@ -26,6 +26,15 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Logo colors (light mode) */
+:root {
+  --color-logo-bg: #1a1a1a;
+  --color-logo-stroke: #383838;
+  --color-logo-c: #3b82f6;
+  --color-logo-y: #e8e6e3;
+  --color-logo-cursor: #3b82f6;
+}
+
 /* Dark mode overrides */
 [data-theme="dark"] {
   --color-bg-primary: #1a1a1a;
@@ -40,6 +49,13 @@ html {
   --color-badge-bg: #2a2a2a;
   --color-badge-text: #a0a0a0;
   --color-shadow: rgba(0, 0, 0, 0.3);
+
+  /* Logo colors (dark mode) */
+  --color-logo-bg: #242424;
+  --color-logo-stroke: #404040;
+  --color-logo-c: #60a5fa;
+  --color-logo-y: #e8e6e3;
+  --color-logo-cursor: #60a5fa;
 }
 
 body {
