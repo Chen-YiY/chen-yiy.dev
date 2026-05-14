@@ -28,11 +28,8 @@ html {
 
 /* Logo colors (light mode) */
 :root {
-  --color-logo-bg: #1a1a1a;
-  --color-logo-stroke: #383838;
-  --color-logo-c: #3b82f6;
-  --color-logo-y: #e8e6e3;
-  --color-logo-cursor: #3b82f6;
+  --color-logo-edge: #8c8c8c;
+  --color-logo-node: #a0a0a0;
 }
 
 /* Dark mode overrides */
@@ -51,11 +48,8 @@ html {
   --color-shadow: rgba(0, 0, 0, 0.3);
 
   /* Logo colors (dark mode) */
-  --color-logo-bg: #242424;
-  --color-logo-stroke: #404040;
-  --color-logo-c: #60a5fa;
-  --color-logo-y: #e8e6e3;
-  --color-logo-cursor: #60a5fa;
+  --color-logo-edge: #6b6b6b;
+  --color-logo-node: #6b6b6b;
 }
 
 body {
