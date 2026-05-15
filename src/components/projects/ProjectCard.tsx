@@ -1,11 +1,13 @@
 import type { ProjectData } from '@/lib/github';
 import { formatRelativeTime } from '@/lib/github';
+import { useLang } from '@/lib/useLang';
 
 interface ProjectCardProps {
   project: ProjectData;
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const { t } = useLang();
   const tags = project.customTags || project.topics;
 
   return (
@@ -22,14 +24,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </h3>
         {project.featured && (
           <span className="flex-shrink-0 ml-2 px-1.5 py-0.5 bg-accent/10 text-accent text-[10px] font-medium rounded">
-            Featured
+            {t('projects.featured')}
           </span>
         )}
       </div>
 
       {/* Description */}
       <p className="text-sm text-text-secondary mb-4 line-clamp-2 flex-1">
-        {project.customDescription || project.description || 'No description'}
+        {project.customDescription || project.description || t('projects.noDescription')}
       </p>
 
       {/* Stats */}

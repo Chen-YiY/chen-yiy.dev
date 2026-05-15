@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { BASE } from '@/lib/base';
+import { useLang } from '@/lib/useLang';
 
 export interface WikiEntry {
   slug: string;
@@ -17,12 +18,13 @@ interface WikiIndexProps {
 const TYPE_TABS = ['All', 'concept', 'entity', 'insight', 'topic', 'source'] as const;
 
 export default function WikiIndex({ entries }: WikiIndexProps) {
+  const { t } = useLang();
   const [activeType, setActiveType] = useState<string>('All');
   const [activeTag, setActiveTag] = useState<string>('All');
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
-    entries.forEach((e) => e.tags.forEach((t) => tags.add(t)));
+    entries.forEach((e) => e.tags.forEach((tag) => tags.add(tag)));
     return ['All', ...Array.from(tags).sort()];
   }, [entries]);
 
@@ -43,17 +45,17 @@ export default function WikiIndex({ entries }: WikiIndexProps) {
     <div>
       {/* Type Tabs */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
-        {TYPE_TABS.map((t) => (
+        {TYPE_TABS.map((tab) => (
           <button
-            key={t}
-            onClick={() => setActiveType(t)}
+            key={tab}
+            onClick={() => setActiveType(tab)}
             className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-              activeType === t
+              activeType === tab
                 ? 'bg-text-primary text-white'
                 : 'bg-badge-bg text-badge-text hover:bg-border'
             }`}
           >
-            {t === 'All' ? '全部' : t}
+            {tab === 'All' ? t('wiki.all') : tab}
           </button>
         ))}
       </div>
@@ -110,7 +112,7 @@ export default function WikiIndex({ entries }: WikiIndexProps) {
 
       {filtered.length === 0 && (
         <p className="text-center text-text-muted py-12">
-          没有找到匹配的条目。
+          {t('wiki.noResults')}
         </p>
       )}
     </div>

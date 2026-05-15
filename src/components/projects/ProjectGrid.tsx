@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import type { ProjectData } from '@/lib/github';
+import { useLang } from '@/lib/useLang';
 import ProjectCard from './ProjectCard';
 
 interface ProjectGridProps {
@@ -9,6 +10,7 @@ interface ProjectGridProps {
 type SortKey = 'stars' | 'updated' | 'name';
 
 export default function ProjectGrid({ projects }: ProjectGridProps) {
+  const { t } = useLang();
   const [activeFilter, setActiveFilter] = useState('All');
   const [sortBy, setSortBy] = useState<SortKey>('updated');
 
@@ -48,9 +50,9 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
   }, [projects, activeFilter, sortBy]);
 
   const sortOptions: { key: SortKey; label: string }[] = [
-    { key: 'updated', label: 'Recently' },
-    { key: 'stars', label: 'Stars' },
-    { key: 'name', label: 'Name' },
+    { key: 'updated', label: t('projects.sortRecently') },
+    { key: 'stars', label: t('projects.sortStars') },
+    { key: 'name', label: t('projects.sortName') },
   ];
 
   return (
@@ -74,7 +76,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
 
       {/* Sort */}
       <div className="flex items-center justify-end gap-2 mb-6">
-        <span className="text-xs text-text-muted">Sort:</span>
+        <span className="text-xs text-text-muted">{t('projects.sort')}</span>
         {sortOptions.map(({ key, label }) => (
           <button
             key={key}
@@ -99,7 +101,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
 
       {filtered.length === 0 && (
         <p className="text-center text-text-muted py-12">
-          No projects found for this filter.
+          {t('projects.noResults')}
         </p>
       )}
     </div>

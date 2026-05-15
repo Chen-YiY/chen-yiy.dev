@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { BASE } from '@/lib/base';
+import { useLang } from '@/lib/useLang';
 
 export interface BlogPost {
   slug: string;
@@ -15,12 +16,13 @@ interface BlogListProps {
 }
 
 export default function BlogList({ posts }: BlogListProps) {
+  const { t } = useLang();
   const [search, setSearch] = useState('');
   const [activeTag, setActiveTag] = useState('All');
 
   const allTags = useMemo(() => {
     const tags = new Set<string>();
-    posts.forEach((p) => p.tags.forEach((t) => tags.add(t)));
+    posts.forEach((p) => p.tags.forEach((tag) => tags.add(tag)));
     return ['All', ...Array.from(tags).sort()];
   }, [posts]);
 
@@ -48,7 +50,7 @@ export default function BlogList({ posts }: BlogListProps) {
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search articles..."
+          placeholder={t('blog.searchPlaceholder')}
           className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-lg text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-accent/20 focus:border-accent transition-colors"
         />
       </div>
@@ -101,7 +103,7 @@ export default function BlogList({ posts }: BlogListProps) {
 
         {filtered.length === 0 && (
           <p className="text-center text-text-muted py-12">
-            No articles found.
+            {t('blog.noResults')}
           </p>
         )}
       </div>
