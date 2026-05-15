@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProjectGrid from '@/components/projects/ProjectGrid';
 import { getProjects } from '@/lib/github';
+import { t } from '@/lib/i18n';
 
 const projects = getProjects();
 ---
@@ -10,10 +11,12 @@ const projects = getProjects();
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
     <section class="text-center max-w-2xl mx-auto mb-12">
       <h1 class="text-3xl sm:text-4xl font-bold text-text-primary mb-3">
-        Projects
+        <span data-lang="zh">{t('projects.title', 'zh')}</span>
+        <span data-lang="en">{t('projects.title', 'en')}</span>
       </h1>
       <p class="text-text-secondary">
-        Every project tells a story
+        <span data-lang="zh">{t('projects.subtitle', 'zh')}</span>
+        <span data-lang="en">{t('projects.subtitle', 'en')}</span>
       </p>
     </section>
 
