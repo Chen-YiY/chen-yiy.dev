@@ -1,0 +1,73 @@
+{
+  "nav": {
+    "projects": "Projects",
+    "wiki": "Wiki",
+    "blog": "Blog",
+    "about": "About"
+  },
+  "hero": {
+    "tagline": "Personal Tech Blog & Open Source Projects",
+    "projects": "Projects",
+    "blog": "Blog"
+  },
+  "home": {
+    "featuredProjects": "Featured Projects",
+    "latestPosts": "Latest Posts",
+    "viewAll": "View All →",
+    "featured": "Featured",
+    "minRead": "min read",
+    "noDescription": "No description"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Every project tells a story",
+    "sort": "Sort:",
+    "sortRecently": "Recently",
+    "sortStars": "Stars",
+    "sortName": "Name",
+    "noResults": "No projects found for this filter.",
+    "featured": "Featured",
+    "noDescription": "No description"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Thoughts, tutorials, and technical deep-dives",
+    "searchPlaceholder": "Search articles...",
+    "noResults": "No articles found.",
+    "minRead": "min read",
+    "backToBlog": "← Back to Blog",
+    "previous": "← Previous",
+    "next": "Next →"
+  },
+  "wiki": {
+    "title": "Wiki",
+    "subtitle": "个人知识库 — 概念、实体与洞察",
+    "all": "All",
+    "noResults": "No matching entries found.",
+    "tags": "Tags",
+    "aliases": "Aliases",
+    "related": "Related",
+    "sources": "Sources",
+    "updatedOn": "Updated on"
+  },
+  "about": {
+    "title": "About Me",
+    "role": "Full-Stack Developer · Open Source Enthusiast",
+    "roleZh": "全栈开发者 · 开源爱好者",
+    "aboutMe": "About Me",
+    "aboutMeZh": "关于我",
+    "skillsTitle": "Skills & Tools",
+    "skillsTitleZh": "技能与工具",
+    "development": "Development",
+    "developmentZh": "开发",
+    "aiDevops": "AI & DevOps",
+    "aiDevopsZh": "AI 与 DevOps",
+    "whatIDo": "What I Do",
+    "whatIDoZh": "我在做什么",
+    "getInTouch": "Get in Touch",
+    "getInTouchZh": "联系方式"
+  },
+  "footer": {
+    "rss": "RSS"
+  }
+}
