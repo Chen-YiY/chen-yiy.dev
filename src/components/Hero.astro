@@ -1,6 +1,7 @@
 ---
 import Logo from '@/components/Logo';
 import { siteConfig } from '@/config';
+import { t } from '@/lib/i18n';
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -16,7 +17,8 @@ const base = import.meta.env.BASE_URL;
     </h1>
 
     <p class="hero-tagline">
-      {siteConfig.description}
+      <span data-lang="zh">{t('hero.tagline', 'zh')}</span>
+      <span data-lang="en">{t('hero.tagline', 'en')}</span>
     </p>
 
     <div class="hero-actions">

@@ -2,7 +2,11 @@
 import { siteConfig } from '@/config';
 import Logo from '@/components/Logo';
 import ThemeToggle from '@/components/ThemeToggle';
+import LangToggle from '@/components/LangToggle';
+import { t } from '@/lib/i18n';
 import '@/styles/global.css';
+
+const navKeys = ['projects', 'wiki', 'blog', 'about'] as const;
 
 interface Props {
   title?: string;
@@ -12,7 +16,7 @@ interface Props {
 
 const { title, description, ogImage } = Astro.props;
 const pageTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title;
-const pageDescription = description || siteConfig.description;
+const pageDescription = description || '';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const base = import.meta.env.BASE_URL;
 const ogImg = ogImage || `${base}favicon.svg`;
@@ -56,6 +60,17 @@ const ogImg = ogImage || `${base}favicon.svg`;
         document.documentElement.setAttribute('data-theme', r);
       })();
     </script>
+    <script is:inline>
+      (function() {
+        var lang = localStorage.getItem('lang') || 'zh';
+        document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+        document.documentElement.setAttribute('data-lang', lang);
+        var s = document.createElement('style');
+        s.setAttribute('data-lang-fouc', '');
+        s.textContent = '[data-lang]:not([data-lang="' + lang + '"]){display:none!important}';
+        document.head.appendChild(s);
+      })();
+    </script>
     <title>{pageTitle}</title>
   </head>
   <body class="flex flex-col min-h-screen">
@@ -69,8 +84,9 @@ const ogImg = ogImage || `${base}favicon.svg`;
 
           <!-- Desktop Nav -->
           <nav class="hidden sm:flex items-center gap-6">
-            {siteConfig.nav.map((item) => {
+            {siteConfig.nav.map((item, i) => {
               const href = base + item.href;
+              const key = `nav.${navKeys[i]}`;
               return (
                 <a
                   href={href}
@@ -82,13 +98,17 @@ const ogImg = ogImage || `${base}favicon.svg`;
                       : 'text-text-secondary hover:text-text-primary',
                   ]}
                 >
-                  {item.label}
+                  <span data-lang="zh">{t(key, 'zh')}</span>
+                  <span data-lang="en">{t(key, 'en')}</span>
                 </a>
               );
             })}
           </nav>
 
-          <ThemeToggle client:load />
+          <div class="flex items-center gap-1">
+            <LangToggle client:load />
+            <ThemeToggle client:load />
+          </div>
 
           <!-- Mobile Menu Button -->
           <button
@@ -106,8 +126,9 @@ const ogImg = ogImage || `${base}favicon.svg`;
         <!-- Mobile Nav -->
         <nav id="mobile-menu" class="hidden sm:hidden pb-4">
           <div class="flex flex-col gap-2">
-            {siteConfig.nav.map((item) => {
+            {siteConfig.nav.map((item, i) => {
               const href = base + item.href;
+              const key = `nav.${navKeys[i]}`;
               return (
                 <a
                   href={href}
@@ -119,7 +140,8 @@ const ogImg = ogImage || `${base}favicon.svg`;
                       : 'text-text-secondary hover:bg-bg-hover',
                   ]}
                 >
-                  {item.label}
+                  <span data-lang="zh">{t(key, 'zh')}</span>
+                  <span data-lang="en">{t(key, 'en')}</span>
                 </a>
               );
             })}
@@ -176,7 +198,6 @@ const ogImg = ogImage || `${base}favicon.svg`;
       </div>
     </footer>
   </body>
-</html>
 
 <script>
   const btn = document.getElementById('mobile-menu-btn');

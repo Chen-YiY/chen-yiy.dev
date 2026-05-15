@@ -6,7 +6,7 @@ export async function GET(context: any) {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return rss({
     title: siteConfig.title,
-    description: siteConfig.description,
+    description: 'Personal Tech Blog & Open Source Projects',
     site: context.site,
     items: posts
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
