@@ -1,6 +1,9 @@
 import { visit } from 'unist-util-visit';
 import type { Root, Text, Html } from 'mdast';
-import { BASE } from './base';
+
+// remark 插件在构建时运行，import.meta.env.BASE_URL 此时不可靠
+// 直接硬编码与 astro.config.mjs 中的 base 保持一致
+const BASE = '/chen-yiy.dev';
 
 // Match [[slug]] or [[slug|display]], exclude ![[image]] embeds
 const WIKILINK_RE = /(?<!!)\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g;
@@ -33,7 +36,7 @@ export default function remarkWikilinks() {
         // wikilink → <a> tag
         children.push({
           type: 'html',
-          value: `<a href="${BASE}/wiki/${slug}" class="wiki-link">${display}</a>`,
+          value: `<a href="${BASE}/wiki/${slug}/" class="wiki-link">${display}</a>`,
         } as Html);
 
         lastIndex = matchEnd;
