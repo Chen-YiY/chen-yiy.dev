@@ -9,9 +9,14 @@ function getStoredLang(): Lang {
 function applyLang(lang: Lang) {
   document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
   document.documentElement.setAttribute('data-lang', lang);
-  document.querySelectorAll<HTMLElement>('[data-lang]').forEach((el) => {
-    el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
-  });
+  // 更新 FOUC style 标签，用 !important 确保隐藏生效
+  let style = document.querySelector<HTMLStyleElement>('style[data-lang-fouc]');
+  if (!style) {
+    style = document.createElement('style');
+    style.setAttribute('data-lang-fouc', '');
+    document.head.appendChild(style);
+  }
+  style.textContent = '[data-lang]:not([data-lang="' + lang + '"]){display:none!important}';
   window.dispatchEvent(new CustomEvent('lang-change', { detail: lang }));
 }
 
